@@ -27,7 +27,7 @@ fi
 
 # Update your system
 if [ "$c" -lt 1 ]; then
-	sudo apt-get install g++ curl dejagnu subversion bison flex bc libcap-dev && checkpoint "1" 
+	sudo apt-get install g++ curl dejagnu subversion bison flex bc libcap-dev libncurses5-dev && checkpoint "1" 
 fi
 
 # Add path includes
