@@ -8,7 +8,7 @@ This script automatically executes the KLEE getting started sequence, so that yo
 ## System requirements
 This script has only been tested on Ubuntu.
 
-If you are interested in running KLEE on a different system please message me and I can make edits, or submit changes on your own.
+If you are interested in running KLEE on a different system please message me and I can make edits or submit changes on your own.
 
 
 ## Install 
