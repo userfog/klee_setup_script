@@ -6,17 +6,24 @@
 This script automatically executes the KLEE getting started sequence, so that you can spend less time worrying about how to install KLEE and more time using it.
 
 ## System requirements
-This script has only been tested on Ubuntu.
+This script has only been tested on Ubuntu 14 LTS server and desktop.
 
 If you are interested in running KLEE on a different system please message me and I can make edits or submit changes on your own.
 
 
 ## Install 
 ```
-mkdir klee_env
-cd klee_env
 git clone https://github.com/userfog/klee_setup_script.git
-chmod 777 klee_setup.sh
+cd klee_setup_script
 ./klee_setup.sh
 ```
 
+## Edit ~/.bashrc
+```
+export C_INCLUDE_PATH=/usr/include/x86_64-linux-gnu
+export CPLUS_INCLUDE_PATH=/usr/include/x86_64-linux-gnu
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib/x86_64-linux-gnu
+export PATH=PATH_TO_KLEE_ENV/klee_env/llvm-gcc4.2-2.9-x86_64-linux/bin:$PATH
+export PATH=PATH_TO_KLEE_ENV/klee_env/llvm-2.9/Release+Asserts/bin:$PATH
+export PATH=PATH_TO_KLEE_ENV/klee_env/klee/Release+Asserts/bin:$PATH
+```
