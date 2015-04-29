@@ -26,11 +26,20 @@ if [ "$c" -eq 10 ]; then
 fi
 
 # Update your system
-if [ "$c" -lt 1 ]; then
-	sudo apt-get update
-	sudo apt-get upgrade
-	sudo apt-get install -f g++ curl dejagnu subversion bison flex bc libcap-dev libncurses5-dev make git && checkpoint "1"
-fi
+sudo apt-get update
+sudo apt-get upgrade
+sudo apt-get install -f -y g++
+sudo apt-get install -f -y curl 
+sudo apt-get install -f -y dejagnu 
+sudo apt-get install -f -y subversion 
+sudo apt-get install -f -y bison 
+sudo apt-get install -f -y flex 
+sudo apt-get install -f -y bc 
+sudo apt-get install -f -y libcap-dev 
+sudo apt-get install -f -y libncurses5-dev 
+sudo apt-get install -f -y make 
+sudo apt-get install -f -y git 
+checkpoint "1"
 
 mkdir klee_env; cd klee_env;
 
