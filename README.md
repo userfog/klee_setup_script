@@ -15,7 +15,7 @@ If you are interested in running KLEE on a different system please message me an
 ```
 git clone https://github.com/userfog/klee_setup_script.git
 cd klee_setup_script
-./klee_setup.sh
+. ./klee_setup.sh
 ```
 
 ## Edit ~/.bashrc
