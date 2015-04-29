@@ -27,7 +27,7 @@ fi
 
 # Update your system
 if [ "$c" -lt 1 ]; then
-	sudo apt-get install g++ curl dejagnu subversion bison flex bc libcap-dev libncurses5-dev make && checkpoint "1"
+	sudo apt-get install g++ curl dejagnu subversion bison flex bc libcap-dev libncurses5-dev make git && checkpoint "1"
 fi
 
 mkdir klee_env; cd klee_env;
@@ -62,6 +62,7 @@ fi
 # Add path includes
 which llvm-gcc >/dev/null || (printf "Add llvm-gcc to your path in ~/.bashrc\n";)
 echo "export PATH=$(pwd)/llvm-gcc4.2-2.9-x86_64-linux/bin:\$PATH" >> ~/.bashrc
+source ~/.bashrc
 
 # Download llvm and llvm patch for ubuntu
 if [ "$c" -lt 4 ]; then 
