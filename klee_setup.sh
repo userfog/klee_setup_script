@@ -27,8 +27,10 @@ fi
 
 # Update your system
 if [ "$c" -lt 1 ]; then
-	sudo apt-get install g++ curl dejagnu subversion bison flex bc libcap-dev libncurses5-dev make && checkpoint "1" 
+	sudo apt-get install g++ curl dejagnu subversion bison flex bc libcap-dev libncurses5-dev make && checkpoint "1"
 fi
+
+mkdir klee_env; cd klee_env;
 
 # Add path includes
 if [ "$C_INCLUDE_PATH" != "/usr/include/x86_64-linux-gnu" ]; then
