@@ -17,9 +17,9 @@ fi
 if [ ! -f .klee_setup_log ]; then
 	touch .klee_setup_log
 	echo "0" > .klee_setup_log
-else
-	c=$(head -c 2 .klee_setup_log) 
 fi
+
+c=$(head -c 2 .klee_setup_log) 
 
 if [ "$c" -eq 10 ]; then
 	printf "You already have klee installed.\nTo reinstall or rebuild parts of klee run ./klee_setup -h || --help\n"
