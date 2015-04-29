@@ -35,13 +35,13 @@ mkdir klee_env; cd klee_env;
 # Add path includes
 if [ "$C_INCLUDE_PATH" != "/usr/include/x86_64-linux-gnu" ]; then
 	printf "Please add \"export C_INCLUDE_PATH=/usr/include/x86_64-linux-gnu\" to ~/.bashrc\n"
-	export C_INCLUDE_PATH=/usr/include/x86_64-linux-gnu
+	echo "export C_INCLUDE_PATH=/usr/include/x86_64-linux-gnu" >> ~/.bashrc
 fi
 
 # Add path includes
 if [ "$CPLUS_INCLUDE_PATH" != "/usr/include/x86_64-linux-gnu" ]; then
 	printf "Please add \"export CPLUS_INCLUDE_PATH=/usr/include/x86_64-linux-gnu\" to ~/.bashrc\n"
-	export CPLUS_INCLUDE_PATH=/usr/include/x86_64-linux-gnu
+	echo "export CPLUS_INCLUDE_PATH=/usr/include/x86_64-linux-gnu" >> ~/.bashrc
 fi
 
 # Download frontend aka llvm-gcc
@@ -61,7 +61,7 @@ fi
 
 # Add path includes
 which llvm-gcc >/dev/null || (printf "Add llvm-gcc to your path in ~/.bashrc\n";)
-export PATH=./llvm-gcc4.2-2.9-x86_64-linux/bin:$PATH
+echo "export PATH=$(pwd)/llvm-gcc4.2-2.9-x86_64-linux/bin:\$PATH" >> ~/.bashrc
 
 # Download llvm and llvm patch for ubuntu
 if [ "$c" -lt 4 ]; then 
@@ -120,7 +120,10 @@ fi
 
 # Add path includes
 which lli >/dev/null || (printf "Add /PATH_TO/llvm-2.9/Release+Asserts/bin/ to your path in ~/.bashrc\n"; return 0)
-export PATH=./llvm-2.9/Release+Asserts/bin:$PATH
+
+echo "export PATH=$(pwd)/llvm-2.9/Release+Asserts/bin:\$PATH" >> ~/.bashrc
+
+source ~/.bashrc
 
 # Install klee-uclibc
 if [ "$c" -lt 9 ]; then
