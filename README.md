@@ -12,6 +12,14 @@ If you are interested in running KLEE on a different system please message me an
 
 
 ## Install 
+### With Vagrant
+```
+vagrant up
+vagrant ssh
+```
+
+### Without Vagrant
+If you are running Ubuntu execute the following commands directly. Otherwise, create an Ubuntu virtual machine and then run the following.
 ```
 git clone https://github.com/userfog/klee_setup_script.git
 cd klee_setup_script
