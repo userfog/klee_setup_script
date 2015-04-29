@@ -6,7 +6,7 @@
 This script automatically executes the KLEE getting started sequence, so that you can spend less time worrying about how to install KLEE and more time using it.
 
 ## System requirements
-This script has only been tested on Ubuntu.
+This script has only been tested on Ubuntu 14 LTS server and desktop.
 
 If you are interested in running KLEE on a different system please message me and I can make edits or submit changes on your own.
 
