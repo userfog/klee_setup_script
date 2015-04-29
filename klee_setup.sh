@@ -33,11 +33,13 @@ fi
 # Add path includes
 if [ "$C_INCLUDE_PATH" != "/usr/include/x86_64-linux-gnu" ]; then
 	printf "Please add \"export C_INCLUDE_PATH=/usr/include/x86_64-linux-gnu\" to ~/.bashrc\n"
+	export C_INCLUDE_PATH=/usr/include/x86_64-linux-gnu
 fi
 
 # Add path includes
 if [ "$CPLUS_INCLUDE_PATH" != "/usr/include/x86_64-linux-gnu" ]; then
 	printf "Please add \"export CPLUS_INCLUDE_PATH=/usr/include/x86_64-linux-gnu\" to ~/.bashrc\n"
+	export CPLUS_INCLUDE_PATH=/usr/include/x86_64-linux-gnu
 fi
 
 # Download frontend aka llvm-gcc
@@ -56,7 +58,8 @@ if [ "$c" -lt 3 ]; then
 fi
 
 # Add path includes
-which llvm-gcc >/dev/null || (printf "Add llvm-gcc to your path\n"; return 0)
+which llvm-gcc >/dev/null || (printf "Add llvm-gcc to your path in ~/.bashrc\n";)
+export PATH=./klee_env/llvm-gcc4.2-2.9-x86_64-linux/bin:$PATH
 
 # Download llvm and llvm patch for ubuntu
 if [ "$c" -lt 4 ]; then 
@@ -110,11 +113,12 @@ if [ "$c" -lt 8 ]; then
 	make OPTIMIZE=-O2 CFLAGS_M32= install || (printf "Making stp-r940 failed\n"; return 0)
 	ulimit -s unlimited
 	cd ../
-        checkpoint "8"
+    checkpoint "8"
 fi
 
 # Add path includes
-which lli >/dev/null || (printf "Add /PATH_TO/llvm-2.9/Release+Asserts/bin/ to your path\n"; return 0)
+which lli >/dev/null || (printf "Add /PATH_TO/llvm-2.9/Release+Asserts/bin/ to your path in ~/.bashrc\n"; return 0)
+export PATH=./klee_env/llvm-2.9/Release+Asserts/bin:$PATH
 
 # Install klee-uclibc
 if [ "$c" -lt 9 ]; then
@@ -134,7 +138,7 @@ if [ "$c" -lt 10 ]; then
 		git clone https://github.com/klee/klee.git || (printf "Git failed to clone klee\n"; return 0)
 	fi
 	cd klee/
-	./configure --with-llvm=/home/ubuntu/klee_env/llvm-2.9 --with-stp=/home/ubuntu/klee_env/stp-r940/install --with-uclibc=/home/ubuntu/klee_env/klee-uclibc --enable-posix-runtime
+	./configure --with-llvm=./klee_env/llvm-2.9 --with-stp=./klee_env/stp-r940/install --with-uclibc=./klee_env/klee-uclibc --enable-posix-runtime
 	make ENABLE_OPTIMIZED=1 || (printf "make failed\n"; return 0)
 	make check
 	make unittests
