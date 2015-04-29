@@ -140,7 +140,7 @@ if [ "$c" -lt 10 ]; then
 		git clone https://github.com/klee/klee.git || (printf "Git failed to clone klee\n"; return 0)
 	fi
 	cd klee/
-	./configure --with-llvm=./klee_env/llvm-2.9 --with-stp=./klee_env/stp-r940/install --with-uclibc=./klee_env/klee-uclibc --enable-posix-runtime
+	./configure --with-llvm=../llvm-2.9 --with-stp=../stp-r940/install --with-uclibc=../klee-uclibc --enable-posix-runtime
 	make ENABLE_OPTIMIZED=1 || (printf "make failed\n"; return 0)
 	make check
 	make unittests
