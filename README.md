@@ -13,10 +13,17 @@ If you are interested in running KLEE on a different system please message me an
 
 ## Install 
 ```
-mkdir klee_env
-cd klee_env
 git clone https://github.com/userfog/klee_setup_script.git
-chmod 777 klee_setup.sh
+cd klee_setup_script
 ./klee_setup.sh
 ```
 
+## Edit ~/.bashrc
+```
+export C_INCLUDE_PATH=/usr/include/x86_64-linux-gnu
+export CPLUS_INCLUDE_PATH=/usr/include/x86_64-linux-gnu
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib/x86_64-linux-gnu
+export PATH=PATH_TO_KLEE_ENV/klee_env/llvm-gcc4.2-2.9-x86_64-linux/bin:$PATH
+export PATH=PATH_TO_KLEE_ENV/klee_env/llvm-2.9/Release+Asserts/bin:$PATH
+export PATH=PATH_TO_KLEE_ENV/klee_env/klee/Release+Asserts/bin:$PATH
+```
