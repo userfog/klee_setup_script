@@ -27,7 +27,9 @@ fi
 
 # Update your system
 if [ "$c" -lt 1 ]; then
-	sudo apt-get install g++ curl dejagnu subversion bison flex bc libcap-dev libncurses5-dev make git && checkpoint "1"
+	sudo apt-get update
+	sudo apt-get upgrade
+	sudo apt-get install -f g++ curl dejagnu subversion bison flex bc libcap-dev libncurses5-dev make git && checkpoint "1"
 fi
 
 mkdir klee_env; cd klee_env;
@@ -35,14 +37,16 @@ mkdir klee_env; cd klee_env;
 # Add path includes
 if [ "$C_INCLUDE_PATH" != "/usr/include/x86_64-linux-gnu" ]; then
 	printf "Please add \"export C_INCLUDE_PATH=/usr/include/x86_64-linux-gnu\" to ~/.bashrc\n"
-	echo "export C_INCLUDE_PATH=/usr/include/x86_64-linux-gnu" >> ~/.bashrc
 fi
+echo "export C_INCLUDE_PATH=/usr/include/x86_64-linux-gnu" >> ~/.bashrc
+source ~/.bashrc
 
 # Add path includes
 if [ "$CPLUS_INCLUDE_PATH" != "/usr/include/x86_64-linux-gnu" ]; then
 	printf "Please add \"export CPLUS_INCLUDE_PATH=/usr/include/x86_64-linux-gnu\" to ~/.bashrc\n"
-	echo "export CPLUS_INCLUDE_PATH=/usr/include/x86_64-linux-gnu" >> ~/.bashrc
 fi
+echo "export CPLUS_INCLUDE_PATH=/usr/include/x86_64-linux-gnu" >> ~/.bashrc
+source ~/.bashrc
 
 # Download frontend aka llvm-gcc
 if [ "$c" -lt 2 ]; then
@@ -108,7 +112,7 @@ fi
 # Make stp-r940
 if [ "$c" -lt 8 ]; then
         if [ ! -d stp-r940 ]; then
-                sudo tar xzfv stp-r940.tgz || (printf "Decompression Failed for stp-r940.tgz\n";  return 0)
+        	tar -zxvf stp-r940.tgz || (printf "Decompression Failed for stp-r940.tgz\n";  return 0)
         fi
 	patch -d stp-r940 -p1 < stpr940.patch
 	cd stp-r940
