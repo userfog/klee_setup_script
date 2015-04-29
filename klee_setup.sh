@@ -107,7 +107,7 @@ fi
 # Make stp-r940
 if [ "$c" -lt 8 ]; then
         if [ ! -d stp-r940 ]; then
-                tar -zxvf stp-r940.tgz || (printf "Decompression Failed for stp-r940.tgz\n";  return 0)
+                sudo tar -zxvf stp-r940.tgz || (printf "Decompression Failed for stp-r940.tgz\n";  return 0)
         fi
 	patch -d stp-r940 -p1 < stpr940.patch
 	cd stp-r940
