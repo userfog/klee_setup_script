@@ -61,7 +61,7 @@ fi
 
 # Add path includes
 which llvm-gcc >/dev/null || (printf "Add llvm-gcc to your path in ~/.bashrc\n";)
-export PATH=./klee_env/llvm-gcc4.2-2.9-x86_64-linux/bin:$PATH
+export PATH=./llvm-gcc4.2-2.9-x86_64-linux/bin:$PATH
 
 # Download llvm and llvm patch for ubuntu
 if [ "$c" -lt 4 ]; then 
@@ -120,7 +120,7 @@ fi
 
 # Add path includes
 which lli >/dev/null || (printf "Add /PATH_TO/llvm-2.9/Release+Asserts/bin/ to your path in ~/.bashrc\n"; return 0)
-export PATH=./klee_env/llvm-2.9/Release+Asserts/bin:$PATH
+export PATH=./llvm-2.9/Release+Asserts/bin:$PATH
 
 # Install klee-uclibc
 if [ "$c" -lt 9 ]; then
@@ -148,4 +148,3 @@ if [ "$c" -lt 10 ]; then
 	checkpoint "10"
 	printf "\nCongratulations you have klee!\n"
 fi
-
