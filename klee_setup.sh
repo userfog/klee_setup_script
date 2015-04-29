@@ -4,7 +4,7 @@ checkpoint(){
 	echo $1 > .klee_setup_log
 }
 
-if [ $1 = "-h"  ] || [ $1 = "--help" ]; then
+if [ $1 = "-h" ] || [ $1 = "--help" ]; then
 	echo ".klee_setup_log\t==\t0\treinstall all"
 	echo ".klee_setup_log\t==\t1\treinstall llvm-gcc, llvm-2.9, stp-r940, klee-uclibc, klee"
 	echo ".klee_setup_log\t==\t3\treinstall llvm-2.9, stp-r940, klee-uclibc, klee"
@@ -14,7 +14,7 @@ if [ $1 = "-h"  ] || [ $1 = "--help" ]; then
 	return 0
 fi
 
-if [ ! -f .klee_setup_log  ]; then
+if [ ! -f .klee_setup_log ]; then
 	touch .klee_setup_log
 	echo "0" > .klee_setup_log
 else
@@ -41,14 +41,14 @@ if [ $CPLUS_INCLUDE_PATH != "/usr/include/x86_64-linux-gnu" ]; then
 fi
 
 # Download frontend aka llvm-gcc
-if [ "$c" -lt 2  ]; then
+if [ "$c" -lt 2 ]; then
 	if [ ! -f llvm-gcc4.2-2.9-x86_64-linux.tar.bz2 ]; then
 		wget http://llvm.org/releases/2.9/llvm-gcc4.2-2.9-x86_64-linux.tar.bz2 || (echo "Wget Failed to retriev http://llvm.org/releases/2.9/llvm-gcc4.2-2.9-x86_64-linux.tar.bz2";  return 0)
 	fi
 	checkpoint "2"
 fi
 
-if [ "$c" -lt 3  ]; then
+if [ "$c" -lt 3 ]; then
 	if [ ! -d llvm-gcc4.2-2.9-x86_64-linux ]; then
 		tar -vxjf llvm-gcc4.2-2.9-x86_64-linux.tar.bz2 || (echo "Decompression Failed for llvm-gcc4.2-2.9-x86_64-linux.tar.bz2";  return 0)
 	fi
@@ -60,17 +60,17 @@ which llvm-gcc >/dev/null || (echo "Add llvm-gcc to your path"; return 0)
 
 # Download llvm and llvm patch for ubuntu
 if [ "$c" -lt 4 ]; then 
-	if [ ! -f unistd-llvm-2.9-jit.patch  ]; then
+	if [ ! -f unistd-llvm-2.9-jit.patch ]; then
 		wget https://www.mail-archive.com/klee-dev@imperial.ac.uk/msg01302/unistd-llvm-2.9-jit.patch || (echo "Patch for llvm-2.9 for Ubuntu not found\nSupposed to be at https://www.mail-archive.com/klee-dev@imperial.ac.uk/msg01302/unistd-llvm-2.9-jit.patch\nContinuing anyway")
 	fi
 
-	if [ ! -f llvm-2.9.tgz  ]; then
+	if [ ! -f llvm-2.9.tgz ]; then
 		wget http://llvm.org/releases/2.9/llvm-2.9.tgz || (echo echo "Wget Failed to retriev http://llvm.org/releases/2.9/llvm-2.9.tgz";  return 0)	
 	fi	
 	checkpoint "4"
 fi
 
-if [ "$c" -lt 5  ]; then
+if [ "$c" -lt 5 ]; then
         if [ ! -d llvm-2.9 ]; then
                 tar -zxvf llvm-2.9.tgz || (echo "Decompression Failed for llvm-2.9.tgz";  return 0)
         fi
@@ -89,18 +89,18 @@ fi
 
 # Download stp-r940 and patch
 if [ "$c" -lt 7 ]; then 
-	if [ ! -f stpr940.patch  ]; then
+	if [ ! -f stpr940.patch ]; then
 		wget https://d1b10bmlvqabco.cloudfront.net/attach/i5gwqzm5ygn4il/hzmtoaejx6xuk/i5swa6j48ecm/stpr940.patch  || (echo "Patch for stp patch for Ubuntu not found\nSupposed to be at https://d1b10bmlvqabco.cloudfront.net/attach/i5gwqzm5ygn4il/hzmtoaejx6xuk/i5swa6j48ecm/stpr940.patch \nContinuing anyway")
 	fi
 
-	if [ ! -f stp-r940.tgz  ]; then
+	if [ ! -f stp-r940.tgz ]; then
 		wget http://www.doc.ic.ac.uk/~cristic/klee/stp-r940.tgz || (echo echo "Wget Failed to retriev http://www.doc.ic.ac.uk/~cristic/klee/stp-r940.tgz";  return 0)	
 	fi	
 	checkpoint "7"
 fi
 
 # Make stp-r940
-if [ "$c" -lt 8  ]; then
+if [ "$c" -lt 8 ]; then
         if [ ! -d stp-r940 ]; then
                 tar -zxvf stp-r940.tgz || (echo "Decompression Failed for stp-r940.tgz";  return 0)
         fi
@@ -117,8 +117,8 @@ fi
 which lli >/dev/null || (echo "Add /PATH_TO/llvm-2.9/Release+Asserts/bin/ to your path"; return 0)
 
 # Install klee-uclibc
-if [ "$c" -lt 9  ]; then
-	if [ ! -d klee-uclibc  ]; then
+if [ "$c" -lt 9 ]; then
+	if [ ! -d klee-uclibc ]; then
 		git clone https://github.com/klee/klee-uclibc.git || (echo "Git failed to clone klee-uclibc"; return 0)
 	fi
 	cd klee-uclibc
@@ -129,8 +129,8 @@ if [ "$c" -lt 9  ]; then
 fi
 
 # Install klee
-if [ "$c" -lt 10  ]; then
-	if [ ! -d klee  ]; then
+if [ "$c" -lt 10 ]; then
+	if [ ! -d klee ]; then
 		git clone https://github.com/klee/klee.git || (echo "Git failed to clone klee"; return 0)
 	fi
 	cd klee/
